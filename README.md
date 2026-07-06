@@ -34,5 +34,32 @@ npx serve .
 
 - `index.html` — the microsite (designed with Claude)
 - `docs/copy-deck-production.md` — the copy deck the site content comes from
+- `llms.txt` — clean markdown map of the event for LLMs / assistants
+- `robots.txt`, `_headers` — crawler + no-index controls (see below)
+
+## For agents & search engines
+
+The site carries a machine-readable layer so assistants, agents, and search
+engines can understand it without scraping the visual page:
+
+- **schema.org `Festival` + `Event` JSON-LD** in `index.html` — the three
+  events with dates, venues, times, performers, and ticket status.
+- **`llms.txt`** — an LLM-friendly summary of the whole event.
+- **Open Graph / Twitter Card** meta for rich link previews.
+
+These work today for any agent given the URL directly. Note: real **A2A** or
+**MCP** support (an agent that *answers questions* or *checks tickets*) needs a
+running server, not a static file — that's a separate build if we want it.
+
+## Going to production
+
+Discovery is intentionally **off** while we're on the dev subdomain. The prod
+cutover is:
+
+1. Remove `<meta name="robots" content="noindex, nofollow">` from `index.html`.
+2. Delete the `X-Robots-Tag` block in `_headers`.
+3. Replace `robots.txt` with an allow rule (open it to crawlers / AI bots).
+4. Add a `1200×630` share image and point `og:image` / `twitter:image` at it.
+5. Map the apex domain `creativeworldsofroberthunter.com` in Cloudflare Pages.
 
 No build step, no dependencies. Long may the song be sung. 🎶
