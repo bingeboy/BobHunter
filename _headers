@@ -1,0 +1,4 @@
+# Cloudflare Pages headers — keep the dev subdomain out of search engines.
+# https://developers.cloudflare.com/pages/configuration/headers/
+/*
+  X-Robots-Tag: noindex, nofollow
