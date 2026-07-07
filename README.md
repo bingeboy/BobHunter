@@ -53,26 +53,22 @@ npx serve public
 
 - `public/index.html` — the microsite (designed with Claude)
 - `public/llms.txt` — clean markdown map of the event for LLMs / assistants
-- `public/robots.txt`, `public/_headers` — crawler + no-index controls (see below)
+- `public/robots.txt`, `public/sitemap.xml` — crawler directives + sitemap
+- `public/imgs/` — image assets (incl. the social share image)
 - `docs/copy-deck-production.md` — the copy deck the site content comes from
 - `worker/` — optional A2A + MCP agent endpoint (separate Cloudflare Worker)
 
 ## Deploying
 
-Deploys via **Cloudflare Pages**, Git-connected, with no build step:
+Served by a Cloudflare **Worker** (`bob-hunter`) with static assets, connected
+to this repo. Single environment — every push to `main` auto-deploys to
+production. There is no separate dev site.
 
-- **Build command:** _(empty)_
-- **Build output directory:** `public`
+- **Build command:** _(none)_
+- **Deploy command:** `npx wrangler deploy`
+- **Assets directory:** `public`
 
-Two environments promote in sequence:
-
-| Env | Branch | Domain |
-| --- | --- | --- |
-| **dev** | `dev` | dev.creativeworldsofroberthunter.com |
-| **prod** | `main` | creativeworldsofroberthunter.com |
-
-Flow: work lands on `dev` → the dev site deploys automatically → verify → merge
-`dev` → `main` to promote to production.
+HTTPS is automatic and free (Cloudflare Universal SSL, auto-renewing).
 
 ## For agents & search engines
 
@@ -88,15 +84,11 @@ These work today for any agent given the URL directly. Note: real **A2A** or
 **MCP** support (an agent that *answers questions* or *checks tickets*) needs a
 running server, not a static file — that's a separate build if we want it.
 
-## Going to production
+## Status
 
-Discovery is intentionally **off** while we're on the dev subdomain. The prod
-cutover is:
-
-1. Remove `<meta name="robots" content="noindex, nofollow">` from `public/index.html`.
-2. Delete the `X-Robots-Tag` block in `public/_headers`.
-3. Replace `public/robots.txt` with an allow rule (open it to crawlers / AI bots).
-4. Add a `1200×630` share image and point `og:image` / `twitter:image` at it.
-5. Map the apex domain `creativeworldsofroberthunter.com` in Cloudflare Pages.
+**Live and public** at <https://creativeworldsofroberthunter.com> — open to
+search engines and AI crawlers (`robots.txt` allows all, `sitemap.xml`
+published, no noindex). Social preview image is `public/imgs/hunter_trio.jpeg`
+(swap in a 1200×630 version anytime for sharper link cards).
 
 No build step, no dependencies. Long may the song be sung. 🎶
