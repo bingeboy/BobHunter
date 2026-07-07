@@ -1,2 +1,5 @@
+# creativeworldsofroberthunter.com — live. Open to search engines and AI crawlers.
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://creativeworldsofroberthunter.com/sitemap.xml
