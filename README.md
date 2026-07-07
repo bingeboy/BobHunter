@@ -45,23 +45,41 @@ Darrin  Daniel is a Eugene native and the publisher of Cityful Press and the poe
 
 ## The Site
 
-This is a single-page static site — just open `index.html` in a browser, or serve it locally:
+A single-page static site. The web root is `public/` — serve it locally with:
 
 ```sh
-npx serve .
+npx serve public
 ```
 
-- `index.html` — the microsite (designed with Claude)
+- `public/index.html` — the microsite (designed with Claude)
+- `public/llms.txt` — clean markdown map of the event for LLMs / assistants
+- `public/robots.txt`, `public/_headers` — crawler + no-index controls (see below)
 - `docs/copy-deck-production.md` — the copy deck the site content comes from
-- `llms.txt` — clean markdown map of the event for LLMs / assistants
-- `robots.txt`, `_headers` — crawler + no-index controls (see below)
+- `worker/` — optional A2A + MCP agent endpoint (separate Cloudflare Worker)
+
+## Deploying
+
+Deploys via **Cloudflare Pages**, Git-connected, with no build step:
+
+- **Build command:** _(empty)_
+- **Build output directory:** `public`
+
+Two environments promote in sequence:
+
+| Env | Branch | Domain |
+| --- | --- | --- |
+| **dev** | `dev` | dev.creativeworldsofroberthunter.com |
+| **prod** | `main` | creativeworldsofroberthunter.com |
+
+Flow: work lands on `dev` → the dev site deploys automatically → verify → merge
+`dev` → `main` to promote to production.
 
 ## For agents & search engines
 
 The site carries a machine-readable layer so assistants, agents, and search
 engines can understand it without scraping the visual page:
 
-- **schema.org `Festival` + `Event` JSON-LD** in `index.html` — the three
+- **schema.org `Festival` + `Event` JSON-LD** in `public/index.html` — the three
   events with dates, venues, times, performers, and ticket status.
 - **`llms.txt`** — an LLM-friendly summary of the whole event.
 - **Open Graph / Twitter Card** meta for rich link previews.
@@ -75,9 +93,9 @@ running server, not a static file — that's a separate build if we want it.
 Discovery is intentionally **off** while we're on the dev subdomain. The prod
 cutover is:
 
-1. Remove `<meta name="robots" content="noindex, nofollow">` from `index.html`.
-2. Delete the `X-Robots-Tag` block in `_headers`.
-3. Replace `robots.txt` with an allow rule (open it to crawlers / AI bots).
+1. Remove `<meta name="robots" content="noindex, nofollow">` from `public/index.html`.
+2. Delete the `X-Robots-Tag` block in `public/_headers`.
+3. Replace `public/robots.txt` with an allow rule (open it to crawlers / AI bots).
 4. Add a `1200×630` share image and point `og:image` / `twitter:image` at it.
 5. Map the apex domain `creativeworldsofroberthunter.com` in Cloudflare Pages.
 
