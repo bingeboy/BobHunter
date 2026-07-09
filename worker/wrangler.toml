@@ -1,0 +1,10 @@
+name = "roberthunter-agent"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# Optional: serve from a subdomain on your own zone (also free).
+# Uncomment after the DNS record / zone is set up in Cloudflare.
+# routes = [
+#   { pattern = "agent.creativeworldsofroberthunter.com", custom_domain = true }
+# ]
