@@ -1,5 +1,4 @@
 # Creative Wor(l)ds of Robert Hunter: A Celebration 🌹
-<img width="944" height="614" alt="image" src="https://github.com/user-attachments/assets/d4c43ed8-f1b9-4d20-bac0-655b02cef799" />
 
 A small site for a big-hearted weekend in Portland, Oregon — September 24–26 
 Honoring Grateful Dead lyricist and American poet Robert Hunter
