@@ -51,12 +51,35 @@ A single-page static site. The web root is `public/` — serve it locally with:
 npx serve public
 ```
 
-- `public/index.html` — the microsite (designed with Claude)
+- `public/index.html` — the built microsite (a self-unpacking bundle; **generated** — see below)
+- `src/index.template.html` — **readable source** for the page content
+- `scripts/build-index.js` — rebuilds `public/index.html` from the source
 - `public/llms.txt` — clean markdown map of the event for LLMs / assistants
 - `public/robots.txt`, `public/sitemap.xml` — crawler directives + sitemap
 - `public/imgs/` — image assets (incl. the social share image)
 - `docs/copy-deck-production.md` — the copy deck the site content comes from
 - `worker/` — optional A2A + MCP agent endpoint (separate Cloudflare Worker)
+
+### Editing page copy
+
+`public/index.html` is a compiled bundle — the page content is stored inside it
+as a JSON-encoded HTML string. **Don't hand-edit that blob.** Instead:
+
+```sh
+# 1. edit the readable source
+$EDITOR src/index.template.html
+# 2. rebuild the bundle (encodes source back into public/index.html)
+node scripts/build-index.js
+# 3. commit both files
+```
+
+The build re-encodes the source with the exact encoding the bundle expects and
+**round-trip-verifies** the result — if the encoding is ever wrong it aborts
+instead of writing a broken page (this is what a blank-page regression looked
+like). `node scripts/build-index.js --check` verifies `public/` is in sync with
+`src/` without writing (handy for CI / pre-commit). Structural changes to the
+shell (JSON-LD, the loader, `<head>`) are still edited directly in
+`public/index.html` — only the page content flows through `src/`.
 
 ## Deploying
 

@@ -1,0 +1,22 @@
+name: bundle-sync
+
+# Fails a PR (or push to main) if public/index.html is out of sync with
+# src/index.template.html — i.e. someone edited the source but forgot to run
+# `node scripts/build-index.js`, or hand-edited the compiled bundle. The check
+# also aborts on a malformed re-encode, so a blank-page regression can't merge.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify public/index.html is in sync with src/index.template.html
+        run: node scripts/build-index.js --check
