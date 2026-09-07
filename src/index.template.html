@@ -1140,12 +1140,9 @@ hr {
 
         <div class="rb-eyebrow" style="letter-spacing:var(--tracking-widest);">A Celebration · Portland, Oregon · MMXXVI</div>
 
-        <!-- stained glass arch window -->
-        <div style="position:relative; width:clamp(280px,38vw,420px); aspect-ratio:3/4; border-radius:46% 46% 10% 10% / 34% 34% 8% 8%; padding:13px; background:var(--sheen-gilt); box-shadow:var(--glow-gold), var(--shadow-lg); animation:rb-rise 1000ms var(--ease-deal) both;">
-          <div style="position:absolute; inset:13px; border-radius:44% 44% 9% 9% / 33% 33% 7% 7%; overflow:hidden; opacity:{{ glassOp }}; background-image:radial-gradient(circle at 42% 30%, rgba(246,239,221,0.22), transparent 52%), repeating-conic-gradient(from 0deg at 50% 58%, rgba(12,11,20,0.62) 0 1.4deg, rgba(12,11,20,0) 1.4deg 14deg), repeating-radial-gradient(circle at 50% 58%, rgba(12,11,20,0) 0 26px, rgba(12,11,20,0.55) 26px 28px), conic-gradient(from 208deg at 50% 58%, #9d2f28, #de8b3a, #d9b968, #6f8a7c, #355e9e, #b8392f, #eca755, #d9b968, #9d2f28);"></div>
-          <div style="position:absolute; top:11%; left:18%; width:64%; height:76%; border-radius:48% 48% 8% 8% / 36% 36% 6% 6%; overflow:hidden; border:2px solid var(--gold-500); box-shadow:0 0 0 4px rgba(12,11,20,0.55), 0 0 26px rgba(198,161,78,0.45), inset 0 0 22px rgba(12,11,20,0.5);">
-            <img src="6b8a9574-7928-41e1-9053-ba3d1cbc24e0" alt="Robert Hunter" style="width:100%; height:100%; object-fit:cover; object-position:center 42%; display:block; transform:scale(1.42); transform-origin:center 42%; filter:sepia(0.28) contrast(1.03);">
-          </div>
+        <!-- main poster — stained-glass art nouveau key art -->
+        <div style="position:relative; width:100%; max-width:760px; margin-inline:auto; border-radius:8px; overflow:hidden; box-shadow:var(--glow-gold), var(--shadow-lg); animation:rb-rise 1000ms var(--ease-deal) both;">
+          <img src="imgs/main-poster.jpg" alt="Creative Wor(l)ds of Robert Hunter — a stained-glass, art-nouveau poster with Robert Hunter's portrait in a radiant medallion, blue roses, and a muse in profile" style="display:block; width:100%; height:auto;">
         </div>
 
         <h1 style="font-family:var(--font-decorative); font-weight:700; font-size:clamp(2.4rem,5.6vw,5rem); line-height:1.02; letter-spacing:var(--tracking-wide); color:var(--gold-400); margin:0; text-shadow:0 1px 0 rgba(12,11,20,0.6);">Creative Wor<span style="color:var(--rose-400);">(l)</span>ds<br>of Robert Hunter</h1>
@@ -1348,10 +1345,12 @@ hr {
 
     <!-- ══════════ CLOSING ══════════ -->
     <section style="max-width:720px; margin:clamp(64px,9vw,120px) auto 0; padding-bottom:clamp(56px,8vw,110px); text-align:center;">
-      <div style="display:inline-flex; align-items:center; justify-content:center; width:88px; height:88px; border-radius:50%; background:var(--sheen-gilt); box-shadow:var(--glow-gold), var(--shadow-md); color:var(--ink-900); margin-bottom:var(--space-5);">
-        <span style="display:inline-flex; width:66px; height:66px; align-items:center; justify-content:center; border-radius:50%; background:var(--ink-900); color:var(--gold-500);">
-          <x-import component-from-global-scope="RosebudDesignSystem_8d9ee6.Icon" name="{{ sealIcon }}" size="34" hint-size="34px,34px"></x-import>
-        </span>
+      <!-- Bob in the church window -->
+      <div style="position:relative; width:clamp(200px,52vw,300px); aspect-ratio:3/4; border-radius:46% 46% 10% 10% / 34% 34% 8% 8%; padding:13px; margin:0 auto var(--space-6); background:var(--sheen-gilt); box-shadow:var(--glow-gold), var(--shadow-lg);">
+        <div style="position:absolute; inset:13px; border-radius:44% 44% 9% 9% / 33% 33% 7% 7%; overflow:hidden; opacity:{{ glassOp }}; background-image:radial-gradient(circle at 42% 30%, rgba(246,239,221,0.22), transparent 52%), repeating-conic-gradient(from 0deg at 50% 58%, rgba(12,11,20,0.62) 0 1.4deg, rgba(12,11,20,0) 1.4deg 14deg), repeating-radial-gradient(circle at 50% 58%, rgba(12,11,20,0) 0 26px, rgba(12,11,20,0.55) 26px 28px), conic-gradient(from 208deg at 50% 58%, #9d2f28, #de8b3a, #d9b968, #6f8a7c, #355e9e, #b8392f, #eca755, #d9b968, #9d2f28);"></div>
+        <div style="position:absolute; top:11%; left:18%; width:64%; height:76%; border-radius:48% 48% 8% 8% / 36% 36% 6% 6%; overflow:hidden; border:2px solid var(--gold-500); box-shadow:0 0 0 4px rgba(12,11,20,0.55), 0 0 26px rgba(198,161,78,0.45), inset 0 0 22px rgba(12,11,20,0.5);">
+          <img src="6b8a9574-7928-41e1-9053-ba3d1cbc24e0" alt="Robert Hunter" style="width:100%; height:100%; object-fit:cover; object-position:center 42%; display:block; transform:scale(1.42); transform-origin:center 42%; filter:sepia(0.28) contrast(1.03);">
+        </div>
       </div>
       <div style="font-family:var(--font-script); font-size:clamp(2.2rem,4vw,3.2rem); line-height:0.85; color:var(--rose-500); margin-bottom:var(--space-2);">in loving memory</div>
       <div style="font-family:var(--font-engraved); font-size:var(--text-xl); letter-spacing:var(--tracking-wider); color:var(--sepia-900);">Robert Hunter</div>
